@@ -54,14 +54,23 @@ public class Libretto {
 	}
 	
 	public Voto cercaEsame(String nomeEsame) {
-		for(Voto v:this.voti) {
-			// se uso == confronta le posizioni in 
-			// memoria e non se le due stringhe sono uguali.
-			if (v.getCorso().equals(nomeEsame)) {
-				return v;
-			}
-		}
+//		for(Voto v:this.voti) {
+//			// se uso == confronta le posizioni in 
+//			// memoria e non se le due stringhe sono uguali.
+//			if (v.getCorso().equals(nomeEsame)) {
+//				return v;
+//			}
+//		}
+		
+//			TUTTA QUESTA PARTE SOPRA E' INUTILE
+		
+		// costruisco un nuovo oggetto voto con parametri fittizi:
+		Voto voto = new Voto(0, nomeEsame, null);
+		int pos = this.voti.indexOf(voto);
+		if(pos==-1)
 		return null;
+		else 
+			return this.voti.get(pos);
 	}
 	
 	/**
@@ -73,15 +82,21 @@ public class Libretto {
 	 */
 	
 	public boolean esisteGiaVoto(Voto v) {
+		/**
+		 * potrei fare anche qui con indexof:
+		 * 
+		 * int pos = this.voti.indexOf(v)
+		 * if(pos==-1)
+		 * return false
+		 * else.....
+		 * 
+		 */
 		Voto trovato = this.cercaEsame(v.getCorso());
 		if(trovato == null)
 			return false;
-		if(trovato.getPunti()==v.getPunti()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		else
+			return (trovato.getPunti()==v.getPunti());
+			
 	}
 	
 	
